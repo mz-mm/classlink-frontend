@@ -6,10 +6,11 @@ interface LessonData {
   id: number;
   lesson_num: number;
   teacher_id: string;
-  subject_id: number;
+  subject: string;
   class_id: number;
   day: number;
   color: string;
+  // Use relation() in database.py file to get the teacher name through id as well as possibly implemeting same feautre subject with subject_id
 }
 
 const Dashboard = () => {
@@ -55,7 +56,7 @@ const Dashboard = () => {
           <div className=" bg-secondary-bg p-48 items-center justify-center m-5">
             {shedule.map((item) => (
               <h1 className=" text-white w-full" key={item.id}>
-                {item.lesson_num}
+                {item.subject}
               </h1>
             ))}
           </div>
