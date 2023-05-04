@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import apiClient from "../../services/api-client";
 
 interface Lesson {
@@ -25,17 +25,20 @@ const Schedule = () => {
 
 
     return (
-        <div>
+        <div className="p-2" style={{display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gridGap: "16px"}}>
             {error ? (
                 <h1>{error}</h1>
             ) : (
                 schedule.map((lesson, index) => (
-                    <h1>
-                        <p>{lesson.subjects}</p>
-                    </h1>
+                    <>
+                        {lesson.subjects.map((subject) => (
+                            <p className="bg-gray-100 p-2 text-center">{subject}</p>
+                        ))}
+                    </>
                 ))
             )}
         </div>
+
     );
 };
 
