@@ -35,7 +35,7 @@ const Schedule = () => {
                         {error ? (
                             <h1>{error}</h1>
                         ) : (
-                            schedule[index].subjects.map((subject, i) => (
+                            schedule.length > index && schedule[index].subjects.map((subject, i) => (
                                 <p key={i} className="bg-blue-500 rounded p-2 text-center text-white">{subject}</p>
                             ))
                         )}

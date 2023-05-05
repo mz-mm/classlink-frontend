@@ -5,21 +5,21 @@ import notes from "../assets/sidebaricons/note.svg";
 import Schedule from "./dashboardComponents/schedule";
 
 const Dashboard = () => {
-  const {authorized, verificationComplete, logout} = useAuth();
+    const {authorized, verificationComplete, logout} = useAuth();
 
-  if (!verificationComplete) {
-    return null;
-  }
+    if (!verificationComplete) {
+        return null;
+    }
 
-  if (!authorized) {
-    logout();
-    return null;
-  }
+    if (!authorized) {
+        logout();
+        return null;
+    }
 
-  return (
-    <div>
-      <Schedule />
-    </div>
-  );
+    return (
+        <div>
+            <Schedule/>
+        </div>
+    );
 };
 export default Dashboard;
