@@ -11,9 +11,9 @@ function App() {
         <Routes>
             <Route path="/" element={<Login/>}/>
             <Route path="/dashboard" element={<Dashboard/>}/>
-            <Route path="adminpanel" element={<AdminPanel/>}/>
-            <Route path="adminpanel/createlesson" element={<CreateLesson/>}/>
-            <Route path="*" element={<h1>Page not found</h1>}/>
+            <Route path="/adminpanel" element={<AdminPanel/>}/>
+            <Route path="/adminpanel/createlesson" element={<CreateLesson/>}/>
+            <Route path="*" element={<h1 className="text-white">Page not found</h1>}/>
         </Routes>
     );
 }

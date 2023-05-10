@@ -26,7 +26,7 @@ const Schedule = () => {
 
 
     return (
-        <div className="px-10 pb-10 pt-5 bg-secondary-bg rounded-2xl shadow-black shadow-xl m-4"
+        <div className="lg:px-10 p-2 pb-10 pt-5 bg-secondary-bg lg:rounded-2xl shadow-black shadow-xl lg:m-4"
              style={{display: "grid", gridTemplateColumns: `repeat(${days.length}, 1fr)`, gridGap: "16px"}}>
             {days.map((day, index) => (
                 <div key={day}>
@@ -35,7 +35,7 @@ const Schedule = () => {
                         {error ? (
                             <h1>{error}</h1>) : (schedule.length > index && schedule[index].subjects.map((subject, i) => (
                                 <p key={i}
-                                   className="bg-blue-500 py-10 px-2 text-center text-sm text-white">{subject}</p>
+                                   className="bg-blue-500 lg:py-10 py-4 px-2 text-center text-sm text-white">{subject}</p>
                             ))
                         )}
                     </div>

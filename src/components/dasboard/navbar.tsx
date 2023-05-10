@@ -38,8 +38,8 @@ const Navbar = () => {
         <div className="m-5 flex text-white">
             <p className="font-bold text-2xl">Привет {name} 👋</p>
             <button onClick={logoutButton}
-                    className="p-2 rounded bg-secondary-bg shadow-md shadow-black ml-auto">
-                <Img src={logoutIcon} alt="logout"/>
+                    className="p-2 rounded bg-secondary-bg hover:shadow-2xl hover:shadow-cyan-500 shadow-md shadow-black ml-auto">
+                <Img className="pointer-events-none" src={logoutIcon} alt="logout"/>
             </button>
         </div>
 
