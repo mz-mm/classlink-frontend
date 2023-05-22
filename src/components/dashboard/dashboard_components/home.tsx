@@ -1,6 +1,9 @@
 import NavBarIcon from "../../../assets/navbarIcon.svg";
+import CloseIcon from "../../../assets/settingsIcon/closeIcon.svg";
+import logoutIcon from "../../../assets/settingsIcon/logoutIcon.svg";
 import {useEffect, useState} from "react";
 import apiClient from "../../../services/api-client";
+import useAuth from "../../../services/useAuth.tsx";
 
 interface Lesson {
     id: number;
@@ -10,9 +13,11 @@ interface Lesson {
 }
 
 const Home = () => {
+    const {logout} = useAuth();
     const [schedule, setSchedule] = useState<Lesson[]>([]);
     const [error, setError] = useState("");
     const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const [menu, setMenu] = useState(false);
 
     useEffect(() => {
         apiClient
@@ -30,8 +35,10 @@ const Home = () => {
         <div className="relative h-screen bg-secondary">
             <div className="bg-primary p-3 flex">
                 <h1 className="p-2 font-semibold lg:text-2xl">Привет Muhammed 👋</h1>
-                <button className="ml-auto">
-                    <img className="p-2" src={NavBarIcon} alt="NavBarIcon"/>
+                <button onClick={() => {
+                    setMenu(!menu)
+                }} className="ml-auto">
+                    <img className="pointer-events-none p-2" src={NavBarIcon} alt="NavBarIcon"/>
                 </button>
             </div>
             <div className="lg:px-10 w-full items-center justify-center">
@@ -51,6 +58,34 @@ const Home = () => {
                         </div>
                     ))}
                 </div>
+            </div>
+            <div>
+                {menu && (
+                    <div className="fixed inset-0 flex items-center justify-center z-50">
+                        <div className="bg-[#ACB5C9]  rounded shadow-xl shadow-gray-700">
+                            <div className="m-8">
+                                <div className="flex pb-4">
+                                    <p className="pr-5 m-2">Настройки</p>
+                                    <button onClick={() => {
+                                        setMenu(!menu)
+                                    }} className="ml-auto">
+                                        <img className="pointer-events-none" src={CloseIcon} alt="closeIcon"/>
+                                    </button>
+                                </div>
+                                <div className="flex">
+                                    <h1 className="m-2 pr-2">Выйти</h1>
+                                    <button onClick={() => {
+                                        logout()
+                                        window.location.reload();
+                                    }} className="ml-auto rounded p-2 text-white flex bg-[#3C3333]">
+                                        <img className="pointer-events-none" src={logoutIcon} alt="downIcon"/>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                )}
             </div>
         </div>
     )

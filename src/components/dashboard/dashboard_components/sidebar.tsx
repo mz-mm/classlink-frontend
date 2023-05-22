@@ -29,7 +29,7 @@ const Sidebar = (props: Props) => {
                                 {activeItem == item.id && (
                                     <motion.div
                                         layoutId='active-button'
-                                        className="bg-blue-500 rounded-2xl  absolute inset-0"/>
+                                        className="bg-tertiary rounded-2xl  absolute inset-0"/>
                                 )}
                                 <img
                                     className="lg:w-[34px] lg:h-[34px] w-[18px] h-[18px]  pointer-events-none relative z-10"
