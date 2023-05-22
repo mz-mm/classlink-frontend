@@ -1,9 +1,8 @@
+import Logo from "../assets/logo.svg";
 import {FormEvent, useState, useRef} from "react";
-import classlinklogo from "..//assets/classlinklogo.svg";
 import axios from "axios";
 
 const Login = () => {
-    document.title = "Classlink - Login";
 
     const [error, setError] = useState("");
 
@@ -28,55 +27,53 @@ const Login = () => {
     };
 
     return (
-        <div className="fixed bottom-0 top-0 right-0 left-0 bg-gray-100">
-            <div className="flex items-center justify-center h-screen" style={{touchAction: "none"}}>
-                <form onSubmit={handleSubmit}>
-                    <div className="bg-white py-5 rounded-xl shadow-2xl ">
-                        <div className="flex items-center justify-center mb-4">
-                            <img src={classlinklogo} alt=""/>
-                        </div>
-                        <div className="flex items-center text-lg font-bold justify-center mb-12">
-                            <h1>Login to classlink</h1>
-                        </div>
-                        <div>{error !== "" &&
-                            <h1 className="flex mb-4 text-white rounded bg-red-500 mx-10 py-2 items-center justify-center">{error}</h1>}</div>
-                        <div className="px-10">
-                            <label htmlFor="" className="text-gray-700 block">
-                                Username
-                            </label>
-                            <input
-                                ref={nameRef}
-                                placeholder="Enter your username"
-                                required={true}
-                                type="text"
-                                className="block w-full py-2 bg-gray-50 rounded border-none mb-4 transition delay-50 focus:ring-blue-500 focus:ring-2"
-                            />
-
-                            <label htmlFor="" className="text-gray-700">
-                                Password
-                            </label>
-                            <input
-                                ref={passwordRef}
-                                placeholder="Enter your password"
-                                required={true}
-                                type="password"
-                                className="w-full py-2 bg-gray-50 rounded border-none mb-14 transition delay-50 focus:ring-blue-500 focus:ring-2"
-                            />
-                            <button
-                                className="w-full rounded mt-4 text-white bg-blue-500 shadow-lg transition delay-75 shadow-blue-500/50 mb-4 py-2 hover:opacity-80 hover:-translate-y-1">
-                                Login
-                            </button>
-                            <div className=" text-xs flex items-center justify-center">
-                                <p>
-                                    Trouble with login?{" "}
-                                    <a className=" text-blue-700" href="">
-                                        Contact for help.
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
+        <div className="fixed bottom-0 top-0 right-0 left-0 touch-none flex justify-center items-center h-screen">
+            <div className="py-5 px-6 bg-login-bg rounded-xl lg:shadow-lg">
+                <div className="mx-8">
+                    <div className="flex mb-4">
+                        <img src={Logo} alt="logo" className="pointer-events-none w-8 h-8"/>
+                        <p className="ml-1 font-semibold">Classlink</p>
                     </div>
-                </form>
+                    <h1 className="mb-10 font-semibold mr-8 text-3xl">Войти Classlink</h1>
+                    <div>{error !== "" &&
+                        <h1 className="flex mb-6 text-white rounded bg-red-500 py-2 items-center justify-center">{error}</h1>}
+                    </div>
+
+                    <form onSubmit={handleSubmit}>
+                        <div className="text-lg font-medium text-login-text">
+                            <div className="mb-3">
+                                <label>Имя пользователя</label>
+                            </div>
+                            <div className="mb-8">
+                                <input
+                                    ref={nameRef}
+                                    required={true}
+                                    type="text"
+                                    className="py-1 px-1 font-light rounded outline outline-1 outline-login-text w-full
+                                    focus:outline-blue-500 focus:outline-2"
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label>Пароль</label>
+                            </div>
+                            <div className="mb-8">
+                                <input
+                                    ref={passwordRef}
+                                    required={true}
+                                    type="password"
+                                    className="py-1 px-1 font-light rounded outline outline-1 outline-login-text w-full
+                                    focus:outline-blue-500 focus:outline-2
+                                    "
+                                />
+                            </div>
+                            <button
+                                className="mb-6 p-2 bg-tertiary rounded text-white w-full
+                                hover:shadow-xl hover:shadow-indigo-400 transition duration-300 ease-in-out
+                                transform hover:scale-105">Войти
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );

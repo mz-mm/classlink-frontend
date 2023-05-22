@@ -1,6 +1,8 @@
 const Messages = () => {
     return (
-        <div className="text-white">Messages</div>
+        <div>
+            <h1>Messages</h1>
+        </div>
     )
 }
 

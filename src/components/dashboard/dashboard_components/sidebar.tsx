@@ -1,10 +1,6 @@
-import calenderIcon from "../../assets/sidebaricons/calender.svg";
-import gradesIcon from "../../assets/sidebaricons/grades.svg";
-import messagesIcon from "../../assets/sidebaricons/messages.svg";
-import tasksIcon from "../../assets/sidebaricons/tasks.svg";
+import Logo from "../../../assets/logo.svg";
 import {motion} from "framer-motion";
 import {useState} from "react";
-import {Img} from "@chakra-ui/react";
 
 interface Props {
     sidebar: { id: number, icon: string }[];
@@ -17,9 +13,10 @@ const Sidebar = (props: Props) => {
     const [activeItem, setActiveItem] = useState(1);
 
     return (
-        <div className="flex h-screen bg-sidebar">
-            <div className="m-auto">
+        <div className="flex">
+            <div className="">
                 <ul className="flex flex-col gap-4">
+                    <img className="pointer-events-none mb-8" src={Logo}/>
                     {props.sidebar.map((item) => (
                         <li key={item.id}>
                             <button
@@ -34,8 +31,10 @@ const Sidebar = (props: Props) => {
                                         layoutId='active-button'
                                         className="bg-blue-500 rounded-2xl  absolute inset-0"/>
                                 )}
-                                <img className="pointer-events-none relative z-10" src={item.icon}
-                                     alt={`Icon ${item.id}`}/>
+                                <img
+                                    className="lg:w-[34px] lg:h-[34px] w-[18px] h-[18px]  pointer-events-none relative z-10"
+                                    src={item.icon}
+                                    alt={`Icon ${item.id}`}/>
                             </button>
                         </li>
                     ))}
