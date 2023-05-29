@@ -4,12 +4,12 @@ import AttendanceIcon from "../../assets/sidebar_icons/attendance.svg"
 import EditIcon from "../../assets/sidebar_icons/edit.svg"
 import AnalyticsIcon from "../../assets/sidebar_icons/analytics.svg"
 
-import Home from "./dashboard_components/home.tsx";
-import Attendance from "./dashboard_components/attendance.tsx";
-import Analytics from "./dashboard_components/analytics.tsx";
-import Messages from "./dashboard_components/message.tsx";
-import Grading from "./dashboard_components/grading.tsx";
-import Sidebar from "./dashboard_components/sidebar.tsx";
+import Home from "./dashboard_components/HomeComponents/Home.tsx";
+import Attendance from "./dashboard_components/AttendanceComponents/Attendance.tsx";
+import Analytics from "./dashboard_components/AnalyticsComponents/Analytics.tsx";
+import Messages from "./dashboard_components/MessageComponents/Message.tsx";
+import Grading from "./dashboard_components/GradingComponents/Grading.tsx";
+import Sidebar from "./dashboard_components/Sidebar.tsx";
 
 import useAuth from "../../services/useAuth";
 import {useEffect, useState} from "react";

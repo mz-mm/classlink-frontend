@@ -37,8 +37,9 @@ const useAuth = () => {
 
     const logout = () => {
         localStorage.removeItem("token");
-        localStorage.removeItem("name")
+        localStorage.removeItem("name");
         setAuthorized(false);
+        window.location.href = "/";
     };
 
     return {authorized, verificationComplete, logout};

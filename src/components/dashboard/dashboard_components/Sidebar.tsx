@@ -32,7 +32,7 @@ const Sidebar = (props: Props) => {
                                         className="bg-tertiary rounded-2xl  absolute inset-0"/>
                                 )}
                                 <img
-                                    className="lg:w-[34px] lg:h-[34px] w-[18px] h-[18px]  pointer-events-none relative z-10"
+                                    className="lg:w-[28px] lg:h-[28px] w-[18px] h-[18px] pointer-events-none relative z-10"
                                     src={item.icon}
                                     alt={`Icon ${item.id}`}/>
                             </button>
