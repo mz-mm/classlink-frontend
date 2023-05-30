@@ -38,14 +38,14 @@ export const Schedule = () => {
     return (
         <>
             {!error && (
-                <div className="lg:px-10 px-2 w-full items-center justify-center">
-                    <div className="grid grid-cols-6 gap-3 pt-3 text-center">
+                <div className="xl:px-16 lg:px-8 px-2 w-full items-center justify-center">
+                    <div className="grid grid-cols-6 gap-3 xl:pt-8 lg:pt-3 text-center">
                         {days.map((day) => (
-                            <div className="font-bold">{day}</div>
+                            <div className="xl:pb-5 font-bold">{day}</div>
                         ))}
                         {schedule.map((lesson) => (
                             <div
-                                className={`flex justify-center items-center lg:h-[100px] md:h-[50px] sm:h-[20px] rounded bg-blue-300 `}
+                                className={`flex justify-center items-center 2xl:h-[100px] xl:h-[80px] lg:h-[60px] md:h-[50px] sm:h-[30px] rounded bg-blue-400`}
                                 key={lesson.id}>{lesson.subject.name}</div>
                         ))}
                     </div>
