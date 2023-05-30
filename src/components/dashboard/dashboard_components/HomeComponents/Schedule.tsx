@@ -34,29 +34,25 @@ export const Schedule = () => {
             });
     }, []);
 
-    console.log(schedule[0].subject);
 
     return (
-        <div className="lg:px-10 w-full items-center justify-center">
-            <table className="">
-                <thead>
-                <tr>
-                    {days.map((day, index) => (
-                        <th key={index}>
-                            {day}
-                        </th>
-                    ))}
-                </tr>
-                </thead>
-                <tbody>
-                <td>
-                    {schedule.slice(0, 6).map((item, index) => (
-                        <tr key={index}>{item.subject.name}</tr>
-                    ))}
-                </td>
-                </tbody>
-            </table>
-        </div>
+        <>
+            {!error && (
+                <div className="lg:px-10 px-2 w-full items-center justify-center">
+                    <div className="grid grid-cols-6 gap-3 pt-3 text-center">
+                        {days.map((day) => (
+                            <div className="font-bold">{day}</div>
+                        ))}
+                        {schedule.map((lesson) => (
+                            <div
+                                className={`flex justify-center items-center lg:h-[100px] md:h-[50px] sm:h-[20px] rounded bg-blue-300 `}
+                                key={lesson.id}>{lesson.subject.name}</div>
+                        ))}
+                    </div>
+                </div>
+            )}
+            {error && (<div><h1>{error}</h1></div>)}
+        </>
     )
 }
 

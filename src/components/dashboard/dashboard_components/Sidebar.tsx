@@ -16,7 +16,7 @@ const Sidebar = (props: Props) => {
         <div className="flex">
             <div className="">
                 <ul className="flex flex-col gap-4">
-                    <img className="pointer-events-none mb-8" src={Logo}/>
+                    <img className="pointer-events-none mb-8" src={Logo} alt="logo"/>
                     {props.sidebar.map((item) => (
                         <li key={item.id}>
                             <button

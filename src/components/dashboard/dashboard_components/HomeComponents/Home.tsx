@@ -14,7 +14,7 @@ const Home = () => {
     return (
         <div className="relative h-screen bg-secondary">
             <Navbar setMenu={_SetMenu}/>
-            {/*<Schedule/>*/}
+            <Schedule/>
             <Setting menu={menu} setMenu={_SetMenu}/>
         </div>
     )
