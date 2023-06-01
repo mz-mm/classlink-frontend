@@ -43,7 +43,7 @@ export const Schedule = () => {
                         ))}
                         {schedule.map((lesson) => (
                             <div
-                                className={`flex justify-center items-center 2xl:h-[100px] xl:h-[80px] lg:h-[60px] md:h-[50px] sm:h-[30px] rounded bg-${lesson.subject.color}`}
+                                className={`flex justify-center items-center 2xl:h-[100px] xl:h-[80px] lg:h-[60px] md:h-[50px] sm:h-[30px] rounded bg-blue-400`}
                                 key={lesson.id}>{lesson.subject.name}</div>
                         ))}
                     </div>
