@@ -39,7 +39,7 @@ export const Schedule = () => {
                 <div className="xl:px-16 lg:px-8 px-2 w-full items-center justify-center">
                     <div className="grid grid-cols-6 gap-3 xl:pt-8 lg:pt-3 text-center">
                         {days.map((day) => (
-                            <div className="xl:pb-5 font-bold">{day}</div>
+                            <div key={day} className="xl:pb-5 font-bold">{day}</div>
                         ))}
                         {schedule.map((lesson) => (
                             <div
