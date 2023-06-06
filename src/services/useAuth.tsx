@@ -38,6 +38,7 @@ const useAuth = () => {
     const logout = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("name");
+        localStorage.removeItem("role")
         setAuthorized(false);
         window.location.href = "/";
     };

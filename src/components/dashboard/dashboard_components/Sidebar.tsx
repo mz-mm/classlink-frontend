@@ -1,9 +1,9 @@
 import Logo from "../../../assets/logo.svg";
 import {motion} from "framer-motion";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 interface Props {
-    sidebar: { id: number, icon: string }[];
+    sidebar: { id: number, icon: string, allowedRoles: string }[];
     activeItem: number;
     onItemClick: (itemId: number) => void;
 }
@@ -11,36 +11,50 @@ interface Props {
 
 const Sidebar = (props: Props) => {
     const [activeItem, setActiveItem] = useState(1);
+    const [role, setRole] = useState("");
+
+    useEffect(() => {
+        const role = localStorage.getItem("role");
+        if (role) {
+            setRole(role);
+        }
+    }, []);
+
 
     return (
         <div className="flex">
             <div className="">
                 <ul className="flex flex-col gap-4">
                     <img className="pointer-events-none mb-8" src={Logo} alt="logo"/>
-                    {props.sidebar.map((item) => (
-                        <li key={item.id}>
-                            <button
-                                className={`${activeItem === item.id ? "" : "hover:opacity-50"} relative rounded-md focus:outline-none p-3`}
-                                onClick={() => {
-                                    setActiveItem(item.id);
-                                    props.onItemClick(item.id);
-                                }}
-                            >
-                                {activeItem == item.id && (
-                                    <motion.div
-                                        layoutId='active-button'
-                                        className="bg-tertiary rounded-2xl  absolute inset-0"/>
-                                )}
-                                <img
-                                    className="lg:w-[28px] lg:h-[28px] w-[18px] h-[18px] pointer-events-none relative z-10"
-                                    src={item.icon}
-                                    alt={`Icon ${item.id}`}/>
-                            </button>
-                        </li>
-                    ))}
+                    {props.sidebar
+                        .filter((item) => item.allowedRoles === "all" || item.allowedRoles.includes(role))
+                        .map((item) => (
+                            <li key={item.id}>
+                                <button
+                                    className={`${activeItem === item.id ? "" : "hover:opacity-50"} relative rounded-md focus:outline-none p-3`}
+                                    onClick={() => {
+                                        setActiveItem(item.id);
+                                        props.onItemClick(item.id);
+                                    }}
+                                >
+                                    {activeItem === item.id && (
+                                        <motion.div
+                                            layoutId="active-button"
+                                            className="bg-tertiary rounded-2xl absolute inset-0"
+                                        />
+                                    )}
+                                    <img
+                                        className="lg:w-[28px] lg:h-[28px] w-[18px] h-[18px] pointer-events-none relative z-10"
+                                        src={item.icon}
+                                        alt={`Icon ${item.id}`}
+                                    />
+                                </button>
+                            </li>
+                        ))}
                 </ul>
             </div>
         </div>
+
     );
 };
 

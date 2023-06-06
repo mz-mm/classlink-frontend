@@ -1,25 +1,34 @@
 import Logo from "../assets/logo.svg";
 import {FormEvent, useState, useRef} from "react";
 import axios from "axios";
+import {decodeToken} from "../services/decode-token.tsx";
 
 const Login = () => {
 
     const [error, setError] = useState("");
-
     const nameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
+
         if (nameRef.current && passwordRef.current) {
             const formData = new FormData();
             formData.append("username", nameRef.current.value);
             formData.append("password", passwordRef.current.value);
+
             try {
                 const response = await axios.post("http://localhost:8000/api/login", formData);
                 const token = response.data.access_token;
+                const decode = decodeToken(token);
+                const name = decode?.name;
+                const role = decode?.role;
+
                 localStorage.setItem("token", token);
+                localStorage.setItem("name", name);
+                localStorage.setItem("role", role);
                 window.location.href = "/dashboard";
+
             } catch (error: Error | any) {
                 setError(error.response.data.detail);
             }

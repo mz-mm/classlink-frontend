@@ -18,6 +18,7 @@ import {useEffect, useState} from "react";
 const Dashboard = () => {
     const {authorized, verificationComplete, logout} = useAuth();
     const [activeItem, setActiveItem] = useState(1);
+    const [userRole, setUserRole] = useState("");
 
     const handleItemClick = (itemId: number) => {
         setActiveItem(itemId);
@@ -35,13 +36,22 @@ const Dashboard = () => {
 
     }, [authorized, verificationComplete, logout]);
 
+    useEffect(() => {
+        const role = localStorage.getItem("role");
+        if (role) {
+            setUserRole(role);
+        }
+    }, []);
+
+
     const sidebar = [
-        {id: 1, icon: HomeIcon},
-        {id: 2, icon: MessagesIcon},
-        {id: 3, icon: AttendanceIcon},
-        {id: 4, icon: EditIcon},
-        {id: 5, icon: AnalyticsIcon}
+        {id: 1, icon: HomeIcon, allowedRoles: "all"},
+        {id: 2, icon: MessagesIcon, allowedRoles: "all"},
+        {id: 3, icon: AttendanceIcon, allowedRoles: "teacher"},
+        {id: 4, icon: EditIcon, allowedRoles: "teacher"},
+        {id: 5, icon: AnalyticsIcon, allowedRoles: "all"},
     ];
+
 
     const renderComponent = () => {
         switch (activeItem) {
@@ -50,15 +60,24 @@ const Dashboard = () => {
             case 2:
                 return <Messages/>;
             case 3:
-                return <Attendance/>;
+                if (userRole === "teacher") {
+                    return <Attendance/>;
+                } else {
+                    return null;
+                }
             case 4:
-                return <Grading/>;
+                if (userRole === "teacher") {
+                    return <Grading/>;
+                } else {
+                    return null;
+                }
             case 5:
                 return <Analytics/>;
             default:
                 return null;
         }
     };
+
 
     return (
         <>
