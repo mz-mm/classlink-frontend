@@ -1,7 +1,7 @@
 import HomeIcon from "../../assets/sidebar_icons/home.svg"
 import MessagesIcon from "../../assets/sidebar_icons/messages.svg"
-import AttendanceIcon from "../../assets/sidebar_icons/attendance.svg"
-import EditIcon from "../../assets/sidebar_icons/edit.svg"
+import GradingIcon from "../../assets/sidebar_icons/attendance.svg"
+import AttendanceIcon from "../../assets/sidebar_icons/edit.svg"
 import AnalyticsIcon from "../../assets/sidebar_icons/analytics.svg"
 
 import Home from "./dashboard_components/HomeComponents/Home.tsx";
@@ -48,7 +48,7 @@ const Dashboard = () => {
         {id: 1, icon: HomeIcon, allowedRoles: "all"},
         {id: 2, icon: MessagesIcon, allowedRoles: "all"},
         {id: 3, icon: AttendanceIcon, allowedRoles: "teacher"},
-        {id: 4, icon: EditIcon, allowedRoles: "teacher"},
+        {id: 4, icon: GradingIcon, allowedRoles: "teacher"},
         {id: 5, icon: AnalyticsIcon, allowedRoles: "all"},
     ];
 
