@@ -7,8 +7,10 @@ interface Student {
 
 }
 
-
 const Attendance = () => {
+
+    document.title = "Oценить"
+
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth() + 1;
@@ -23,22 +25,29 @@ const Attendance = () => {
     })
 
 
-    const currentHour = currentDate.getDate()
-    const currentMinute = currentDate.getMinutes()
-
-
-    // Finish the lesson_num finding function
-    if (currentHour > 8 && currentHour < 9 && currentMinute < 45) {
-        setFormData({...formData, current_lesson: 1});
-    } else if (currentHour > 8 && ((currentHour > 9 && currentMinute < 35) || currentMinute > 50)) {
-        setFormData({...formData, current_lesson: 1});
-    }
-
-
     useEffect(() => {
+        const currentHour = currentDate.getHours();
+        const currentMinute = currentDate.getMinutes();
+
+        if (currentHour > 8 && currentHour < 9 && currentMinute < 45) {
+            setFormData({...formData, current_lesson: 1});
+        } else if (currentHour > 8 && ((currentHour > 9 && currentMinute < 35) || currentMinute > 50)) {
+            setFormData({...formData, current_lesson: 2});
+        } else if (currentHour > 9 && ((currentHour > 10 && currentMinute < 25) || currentMinute > 40)) {
+            setFormData({...formData, current_lesson: 3});
+        } else if (currentHour > 10 && ((currentHour > 11 && currentMinute < 25) || currentMinute > 35)) {
+            setFormData({...formData, current_lesson: 4});
+        } else if (currentHour > 11 && ((currentHour > 12 && currentMinute < 15) || currentMinute > 30)) {
+            setFormData({...formData, current_lesson: 5});
+        } else if (currentHour > 12 && ((currentHour > 13 && currentMinute < 0) || currentMinute > 20)) {
+            setFormData({...formData, current_lesson: 6});
+        }
+
+        setFormData({...formData, current_lesson: 2})
+
         apiClient.post("/teacher/attendance", formData)
             .then((response) => {
-                setStudents(response.data)
+                setStudents(response.data);
             })
             .catch((error) => {
                 setError(error.response.data.detail);

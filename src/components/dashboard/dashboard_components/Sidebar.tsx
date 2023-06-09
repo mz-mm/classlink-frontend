@@ -3,7 +3,7 @@ import {motion} from "framer-motion";
 import {useState, useEffect} from "react";
 
 interface Props {
-    sidebar: { id: number, icon: string, allowedRoles: string }[];
+    sidebar: { id: number, icon: string, allowedRoles: string, name: string }[];
     activeItem: number;
     onItemClick: (itemId: number) => void;
 }
@@ -23,36 +23,34 @@ const Sidebar = (props: Props) => {
 
     return (
         <div className="flex">
-            <div className="">
-                <ul className="flex flex-col gap-4">
-                    <img className="pointer-events-none mb-8" src={Logo} alt="logo"/>
-                    {props.sidebar
-                        .filter((item) => item.allowedRoles === "all" || item.allowedRoles.includes(role))
-                        .map((item) => (
-                            <li key={item.id}>
-                                <button
-                                    className={`${activeItem === item.id ? "" : "hover:opacity-50"} relative rounded-md focus:outline-none p-3`}
-                                    onClick={() => {
-                                        setActiveItem(item.id);
-                                        props.onItemClick(item.id);
-                                    }}
-                                >
-                                    {activeItem === item.id && (
-                                        <motion.div
-                                            layoutId="active-button"
-                                            className="bg-tertiary rounded-2xl absolute inset-0"
-                                        />
-                                    )}
-                                    <img
-                                        className="lg:w-[28px] lg:h-[28px] w-[18px] h-[18px] pointer-events-none relative z-10"
-                                        src={item.icon}
-                                        alt={`Icon ${item.id}`}
+            <ul className="flex flex-col gap-4">
+                <img className="pointer-events-none mb-8 w-[55px] h-[55px]" src={Logo} alt="logo"/>
+                {props.sidebar
+                    .filter((item) => item.allowedRoles === "all" || item.allowedRoles.includes(role))
+                    .map((item) => (
+                        <li key={item.id}>
+                            <button
+                                className={`${activeItem === item.id ? "" : "hover:opacity-50"} relative rounded-md focus:outline-none p-3`}
+                                onClick={() => {
+                                    setActiveItem(item.id);
+                                    props.onItemClick(item.id);
+                                }}
+                            >
+                                {activeItem === item.id && (
+                                    <motion.div
+                                        layoutId="active-button"
+                                        className="bg-tertiary rounded-2xl absolute inset-0"
                                     />
-                                </button>
-                            </li>
-                        ))}
-                </ul>
-            </div>
+                                )}
+                                <img
+                                    className="lg:w-[28px] lg:h-[28px] w-[18px] h-[18px] pointer-events-none relative z-10"
+                                    src={item.icon}
+                                    alt={`Icon ${item.id}`}
+                                />
+                            </button>
+                        </li>
+                    ))}
+            </ul>
         </div>
 
     );

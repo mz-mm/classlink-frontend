@@ -1,4 +1,5 @@
 const Messages = () => {
+    document.title = "Сообщения"
     return (
         <div>
             <h1>Messages</h1>

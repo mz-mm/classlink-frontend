@@ -7,6 +7,8 @@ import {Schedule} from "./Schedule.tsx";
 const Home = () => {
     const [menu, setMenu] = useState(false);
 
+    document.title = "Расписание"
+
     const _SetMenu = () => {
         setMenu(!menu)
     }

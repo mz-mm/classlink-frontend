@@ -45,11 +45,11 @@ const Dashboard = () => {
 
 
     const sidebar = [
-        {id: 1, icon: HomeIcon, allowedRoles: "all"},
-        {id: 2, icon: MessagesIcon, allowedRoles: "all"},
-        {id: 3, icon: AttendanceIcon, allowedRoles: "teacher"},
-        {id: 4, icon: GradingIcon, allowedRoles: "teacher"},
-        {id: 5, icon: AnalyticsIcon, allowedRoles: "all"},
+        {id: 1, icon: HomeIcon, allowedRoles: "all", name: "Расписание"},
+        {id: 2, icon: MessagesIcon, allowedRoles: "all", name: ""},
+        {id: 3, icon: AttendanceIcon, allowedRoles: "teacher", name: ""},
+        {id: 4, icon: GradingIcon, allowedRoles: "teacher", name: ""},
+        {id: 5, icon: AnalyticsIcon, allowedRoles: "all", name: ""},
     ];
 
 
