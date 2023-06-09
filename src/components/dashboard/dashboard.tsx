@@ -87,7 +87,7 @@ const Dashboard = () => {
                         <div className="pl-3 pt-3 border-r-3 border-secondary pr-3 min-w-fit">
                             <Sidebar sidebar={sidebar} activeItem={activeItem} onItemClick={handleItemClick}/>
                         </div>
-                        <div className="w-full h-full">
+                        <div className="w-full overflow-auto">
                             {renderComponent()}
                         </div>
                     </div>
