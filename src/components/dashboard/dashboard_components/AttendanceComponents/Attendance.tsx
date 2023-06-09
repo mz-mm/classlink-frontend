@@ -24,6 +24,15 @@ const Attendance = () => {
         date: `${year}-${month}-${day}`
     })
 
+    const [selectedButtons, setSelectedButtons] = useState<{ [key: number]: number | null }>({});
+
+    const handleButtonClick = (studentId: number, buttonIndex: number) => {
+        setSelectedButtons((prevSelectedButtons) => ({
+            ...prevSelectedButtons,
+            [studentId]: prevSelectedButtons[studentId] === buttonIndex ? null : buttonIndex,
+        }));
+    };
+
 
     useEffect(() => {
         const currentHour = currentDate.getHours();
@@ -73,11 +82,23 @@ const Attendance = () => {
                         {student.full_name}
                         <div className="flex ml-auto">
                             <button
-                                className="border-green-500 border-2 w-6 h-6 rounded-full sm:mr-[90px] mr-[20px]"></button>
+                                className={`border-green-500 border-2 w-6 h-6 rounded-full sm:mr-[90px] mr-[20px] ${
+                                    selectedButtons[student.id] === 1 && "bg-green-500"
+                                }`}
+                                onClick={() => handleButtonClick(student.id, 1)}
+                            ></button>
                             <button
-                                className="border-yellow-500 border-2 w-6 h-6 rounded-full sm:mr-[85px] mr-[20px]"></button>
+                                className={`border-yellow-500 border-2 w-6 h-6 rounded-full sm:mr-[85px] mr-[20px] ${
+                                    selectedButtons[student.id] === 2 && "bg-yellow-500"
+                                }`}
+                                onClick={() => handleButtonClick(student.id, 2)}
+                            ></button>
                             <button
-                                className="border-red-500 border-2 w-6 h-6 rounded-full sm:mr-[24px] mr-[20px]"></button>
+                                className={`border-red-500 border-2 w-6 h-6 rounded-full sm:mr-[24px] mr-[20px] ${
+                                    selectedButtons[student.id] === 3 && "bg-red-500"
+                                }`}
+                                onClick={() => handleButtonClick(student.id, 3)}
+                            ></button>
                         </div>
                     </div>
                 </ul>
