@@ -84,7 +84,7 @@ const Dashboard = () => {
             {authorized && (
                 <div className="h-screen touch-none">
                     <div className="flex w-creen w-full h-screen">
-                        <div className="pl-3 pt-3 border-r-3 border-secondary pr-3 min-w-fit">
+                        <div className="pl-5 pt-5 border-r-3 border-secondary pr-5 min-w-fit">
                             <Sidebar sidebar={sidebar} activeItem={activeItem} onItemClick={handleItemClick}/>
                         </div>
                         <div className="w-full overflow-auto">

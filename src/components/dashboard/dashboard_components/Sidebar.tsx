@@ -42,16 +42,16 @@ const Sidebar = (props: Props) => {
                                 {activeItem === item.id && (
                                     <motion.div
                                         layoutId="active-button"
-                                        className="bg-tertiary rounded-2xl absolute inset-0 md:w-[150px]"
+                                        className="bg-tertiary rounded-2xl absolute inset-0 md:w-[155px]"
                                     />
                                 )}
-                                <div className="flex space-x-2 relative z-10">
+                                <div className="flex space-x-3 relative z-10">
                                     <img
                                         className="lg:w-[28px] lg:h-[28px] w-[18px] h-[18px] pointer-events-none relative z-10"
                                         src={item.icon}
                                         alt={`Icon ${item.id}`}
                                     />
-                                    <div className="hidden md:block">
+                                    <div className="hidden md:block pt-1">
                                         <p>{item.name}</p>
                                     </div>
                                 </div>

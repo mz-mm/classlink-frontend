@@ -19,7 +19,7 @@ interface Lesson {
 export const Schedule = () => {
     const [schedule, setSchedule] = useState<Lesson[]>([]);
     const [error, setError] = useState("");
-    const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const days = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
 
     useEffect(() => {
         apiClient

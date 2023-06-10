@@ -24,21 +24,11 @@ const Attendance = () => {
         date: `${year}-${month}-${day}`
     })
 
-    const [selectedButtons, setSelectedButtons] = useState<{ [key: number]: number | null }>({});
-
-    const handleButtonClick = (studentId: number, buttonIndex: number) => {
-        setSelectedButtons((prevSelectedButtons) => ({
-            ...prevSelectedButtons,
-            [studentId]: prevSelectedButtons[studentId] === buttonIndex ? null : buttonIndex,
-        }));
-    };
-
-
     useEffect(() => {
         const currentHour = currentDate.getHours();
         const currentMinute = currentDate.getMinutes();
 
-        let newLesson = 0;
+        let newLesson = 2;
 
         if (currentHour === 8 && currentMinute >= 45) {
             newLesson = 1;
@@ -67,8 +57,18 @@ const Attendance = () => {
     }, [currentDate, formData.current_lesson, setFormData]);
 
 
+    const [selectedButtons, setSelectedButtons] = useState<{ [key: number]: number | null }>({});
+
+    const handleButtonClick = (studentId: number, buttonIndex: number) => {
+        setSelectedButtons((prevSelectedButtons) => ({
+            ...prevSelectedButtons,
+            [studentId]: prevSelectedButtons[studentId] === buttonIndex ? null : buttonIndex,
+        }));
+    };
+
+
     return (
-        <div className="bg-secondary h-full pt-8 px-16 overflow-clip">
+        <div className="bg-secondary h-full pt-8 px-16 overflow-scroll">
             <div className="mb-4 flex">
                 <p>Студенты</p>
                 <div className="ml-auto flex space-x-8">
@@ -82,38 +82,36 @@ const Attendance = () => {
             )}
             {formData.current_lesson === 0 && (
                 <div className="rounded py-4 text-center w-full bg-red-300 border border-red-400 text-red-800">
-                    Lesson has not started yet
+                    Урок не начался или уже закончился
                 </div>
             )}
-            <div className="h-full overflow-scroll pb-10">
-                {students.map((student) => (
-                    <ul key={student.id}>
-                        <div className="bg-gray-200 p-3 mb-3 rounded flex">
-                            {student.full_name}
-                            <div className="flex ml-auto">
-                                <button
-                                    className={`border-green-500 border-2 w-6 h-6 rounded-full sm:mr-[90px] mr-[20px] ${
-                                        selectedButtons[student.id] === 1 && "bg-green-500"
-                                    }`}
-                                    onClick={() => handleButtonClick(student.id, 1)}
-                                ></button>
-                                <button
-                                    className={`border-yellow-500 border-2 w-6 h-6 rounded-full sm:mr-[85px] mr-[20px] ${
-                                        selectedButtons[student.id] === 2 && "bg-yellow-500"
-                                    }`}
-                                    onClick={() => handleButtonClick(student.id, 2)}
-                                ></button>
-                                <button
-                                    className={`border-red-500 border-2 w-6 h-6 rounded-full sm:mr-[24px] mr-[20px] ${
-                                        selectedButtons[student.id] === 3 && "bg-red-500"
-                                    }`}
-                                    onClick={() => handleButtonClick(student.id, 3)}
-                                ></button>
-                            </div>
+            {students.map((student) => (
+                <ul key={student.id}>
+                    <div className="bg-gray-200 p-3 mb-3 rounded flex">
+                        {student.full_name}
+                        <div className="flex ml-auto">
+                            <button
+                                className={`border-green-500 border-2 w-6 h-6 rounded-full sm:mr-[90px] mr-[20px] ${
+                                    selectedButtons[student.id] === 1 && "bg-green-500"
+                                }`}
+                                onClick={() => handleButtonClick(student.id, 1)}
+                            ></button>
+                            <button
+                                className={`border-yellow-500 border-2 w-6 h-6 rounded-full sm:mr-[85px] mr-[20px] ${
+                                    selectedButtons[student.id] === 2 && "bg-yellow-500"
+                                }`}
+                                onClick={() => handleButtonClick(student.id, 2)}
+                            ></button>
+                            <button
+                                className={`border-red-500 border-2 w-6 h-6 rounded-full sm:mr-[24px] mr-[20px] ${
+                                    selectedButtons[student.id] === 3 && "bg-red-500"
+                                }`}
+                                onClick={() => handleButtonClick(student.id, 3)}
+                            ></button>
                         </div>
-                    </ul>
-                ))}
-            </div>
+                    </div>
+                </ul>
+            ))}
         </div>
     )
 }
