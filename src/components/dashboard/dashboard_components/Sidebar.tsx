@@ -24,7 +24,10 @@ const Sidebar = (props: Props) => {
     return (
         <div className="flex">
             <ul className="flex flex-col gap-4">
-                <img className="pointer-events-none mb-8 w-[55px] h-[55px]" src={Logo} alt="logo"/>
+                <div className="flex mb-8 items-center">
+                    <img className="pointer-events-none  w-[40px] h-[40px]" src={Logo} alt="logo"/>
+                    <p className="font-bold text-lg pb-2 pl-1 hidden md:block">Classlink</p>
+                </div>
                 {props.sidebar
                     .filter((item) => item.allowedRoles === "all" || item.allowedRoles.includes(role))
                     .map((item) => (
@@ -39,14 +42,19 @@ const Sidebar = (props: Props) => {
                                 {activeItem === item.id && (
                                     <motion.div
                                         layoutId="active-button"
-                                        className="bg-tertiary rounded-2xl absolute inset-0"
+                                        className="bg-tertiary rounded-2xl absolute inset-0 md:w-[150px]"
                                     />
                                 )}
-                                <img
-                                    className="lg:w-[28px] lg:h-[28px] w-[18px] h-[18px] pointer-events-none relative z-10"
-                                    src={item.icon}
-                                    alt={`Icon ${item.id}`}
-                                />
+                                <div className="flex space-x-2 relative z-10">
+                                    <img
+                                        className="lg:w-[28px] lg:h-[28px] w-[18px] h-[18px] pointer-events-none relative z-10"
+                                        src={item.icon}
+                                        alt={`Icon ${item.id}`}
+                                    />
+                                    <div className="hidden md:block">
+                                        <p>{item.name}</p>
+                                    </div>
+                                </div>
                             </button>
                         </li>
                     ))}
