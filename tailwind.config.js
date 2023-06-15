@@ -5,7 +5,7 @@ export default {
     extend: {
       colors: {
         primary: "#F7F7FD",
-        secondary: "#CCCFD7",
+        secondary: "#D9DCE3",
         tertiary: "#6E62E5",
         "login-bg": "#F7F7FD",
         "login-text": "#464151",

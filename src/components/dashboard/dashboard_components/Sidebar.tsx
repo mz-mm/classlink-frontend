@@ -1,67 +1,72 @@
 import Logo from "../../../assets/logo.svg";
-import {motion} from "framer-motion";
-import {useState, useEffect} from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
-    sidebar: { id: number, icon: string, allowedRoles: string, name: string }[];
-    activeItem: number;
-    onItemClick: (itemId: number) => void;
+  sidebar: { id: number; icon: string; allowedRoles: string; name: string }[];
+  activeItem: number;
+  onItemClick: (itemId: number) => void;
 }
 
-
 const Sidebar = (props: Props) => {
-    const [activeItem, setActiveItem] = useState(1);
-    const [role, setRole] = useState("");
+  const [activeItem, setActiveItem] = useState(1);
+  const [role, setRole] = useState("");
 
-    useEffect(() => {
-        const role = localStorage.getItem("role");
-        if (role) {
-            setRole(role);
-        }
-    }, []);
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+    if (role) {
+      setRole(role);
+    }
+  }, []);
 
-
-    return (
-        <div className="flex">
-            <ul className="flex flex-col gap-4">
-                <div className="flex mb-8 items-center">
-                    <img className="pointer-events-none  w-[40px] h-[40px]" src={Logo} alt="logo"/>
-                    <p className="font-bold text-lg pb-2 pl-1 hidden md:block">Classlink</p>
-                </div>
-                {props.sidebar
-                    .filter((item) => item.allowedRoles === "all" || item.allowedRoles.includes(role))
-                    .map((item) => (
-                        <li key={item.id}>
-                            <button
-                                className={`${activeItem === item.id ? "" : "hover:opacity-50"} relative rounded-md focus:outline-none p-3`}
-                                onClick={() => {
-                                    setActiveItem(item.id);
-                                    props.onItemClick(item.id);
-                                }}
-                            >
-                                {activeItem === item.id && (
-                                    <motion.div
-                                        layoutId="active-button"
-                                        className="bg-tertiary rounded-2xl absolute inset-0 md:w-[155px]"
-                                    />
-                                )}
-                                <div className="flex space-x-3 relative z-10">
-                                    <img
-                                        className="lg:w-[28px] lg:h-[28px] w-[18px] h-[18px] pointer-events-none relative z-10"
-                                        src={item.icon}
-                                        alt={`Icon ${item.id}`}
-                                    />
-                                    <div className="hidden md:block pt-1">
-                                        <p>{item.name}</p>
-                                    </div>
-                                </div>
-                            </button>
-                        </li>
-                    ))}
-            </ul>
+  return (
+    <div className="flex ">
+      <ul className="flex flex-col">
+        <div className="items-cente mb-8 flex">
+          <img
+            className="pointer-events-none ml-5 h-[40px] w-[40px]"
+            src={Logo}
+            alt="logo"
+          />
+          <p className="hidden pb-2 pl-1 text-lg font-bold md:block">
+            Classlink
+          </p>
         </div>
-
-    );
+        <div>
+          {props.sidebar
+            .filter(
+              (item) =>
+                item.allowedRoles === "all" || item.allowedRoles.includes(role)
+            )
+            .map((item) => (
+              <li key={item.id}>
+                <button
+                  className={`${
+                    activeItem === item.id
+                      ? "w-full rounded-r border-l-4 border-black bg-secondary"
+                      : "w-full border-l-4 border-white hover:border-secondary hover:bg-secondary"
+                  } relative p-3 focus:outline-none md:px-7 md:py-3`}
+                  onClick={() => {
+                    setActiveItem(item.id);
+                    props.onItemClick(item.id);
+                  }}
+                >
+                  <div className="relative z-10 flex space-x-3">
+                    <img
+                      className="pointer-events-none relative z-10 h-[18px] w-[18px] md:mt-1.5 lg:mt-0 lg:h-[28px] lg:w-[28px]"
+                      src={item.icon}
+                      alt={`Icon ${item.id}`}
+                    />
+                    <div className="hidden pt-1 md:block">
+                      <p className="pb-1">{item.name}</p>
+                    </div>
+                  </div>
+                </button>
+              </li>
+            ))}
+        </div>
+      </ul>
+    </div>
+  );
 };
 
 export default Sidebar;
