@@ -91,9 +91,15 @@ const Login = () => {
                 className="w-full rounded-xl border-2 bg-placeholder px-5 py-2"
               />
             </div>
-            <button className="w-full rounded-xl border-2 bg-tertiary px-5 py-2 text-white transition hover:bg-indigo-700 active:border-blue-500">
-              Войти
-            </button>
+            {error !== "Rate limit exceeded." ? (
+              <button className="w-full rounded-xl border-2 bg-tertiary px-5 py-2 text-white transition hover:bg-indigo-700 active:border-blue-500">
+                Войти
+              </button>
+            ) : (
+              <div className="w-full cursor-not-allowed rounded-xl border-2 bg-indigo-900 px-5 py-2 text-center text-white transition">
+                Войти
+              </div>
+            )}
           </form>
         </div>
       </div>

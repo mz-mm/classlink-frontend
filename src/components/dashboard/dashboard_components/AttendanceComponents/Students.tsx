@@ -18,6 +18,9 @@ const Students = () => {
     current_day: currentDate.toLocaleDateString(undefined, { weekday: "long" }),
     current_lesson: 0,
     date: `${year}-${month}-${day}`,
+    year: year,
+    month: month,
+    day: day,
   });
 
   useEffect(() => {
