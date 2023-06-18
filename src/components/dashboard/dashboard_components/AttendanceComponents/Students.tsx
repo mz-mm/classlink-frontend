@@ -29,7 +29,7 @@ const Students = () => {
 
     let newLesson = 2;
 
-    if (currentHour === 8 && currentMinute >= 45) {
+    if (currentHour === 8 && currentMinute < 45) {
       newLesson = 1;
     } else if (
       (currentHour === 8 && currentMinute >= 50) ||
@@ -77,16 +77,32 @@ const Students = () => {
   }, [currentDate, formData.current_lesson, setFormData]);
 
   const [selectedButtons, setSelectedButtons] = useState<{
-    [key: number]: number | null;
+    [key: number]: number;
   }>({});
 
   const handleButtonClick = (studentId: number, buttonIndex: number) => {
-    setSelectedButtons((prevSelectedButtons) => ({
-      ...prevSelectedButtons,
-      [studentId]:
-        prevSelectedButtons[studentId] === buttonIndex ? null : buttonIndex,
-    }));
+    setSelectedButtons((prevSelectedButtons) => {
+      const isButtonSelected = prevSelectedButtons[studentId] === buttonIndex;
+
+      if (isButtonSelected) {
+        return prevSelectedButtons; // Return previous state without any changes
+      }
+
+      return {
+        ...prevSelectedButtons,
+        [studentId]: buttonIndex,
+      };
+    });
+
+    if (buttonIndex === 1 && selectedButtons[studentId] !== 1) {
+      console.log("here");
+    } else if (buttonIndex === 2 && selectedButtons[studentId] !== 2) {
+      console.log("late");
+    } else if (buttonIndex === 3 && selectedButtons[studentId] !== 3) {
+      console.log("not here");
+    }
   };
+
   return (
     <div>
       {error && <div>{error}</div>}
@@ -114,7 +130,9 @@ const Students = () => {
               ></button>
               <button
                 className={`mr-[20px] h-6 w-6 rounded-full border-2 border-red-500 sm:mr-[24px] ${
-                  selectedButtons[student.id] === 3 && "bg-red-500"
+                  (selectedButtons[student.id] === 3 ||
+                    selectedButtons[student.id] == null) &&
+                  "bg-red-500"
                 }`}
                 onClick={() => handleButtonClick(student.id, 3)}
               ></button>
